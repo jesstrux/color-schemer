@@ -1,0 +1,32 @@
+1. Colour basics
+	- change formats(rgb, hex, hsl)
+	- color wheel
+
+2. Edit colour
+	- darken, brighten, lighten, saturate, desaturate	
+
+3. Palettes:
+	- monochromatic, triads, tetratriads, complementary
+	- colours from image
+	- colour at a single point on image,
+	- pick colour outside app(use a box pointer)
+	- read in common palette formats
+
+4. Colour usage
+	- background and text contrast
+	- colour in app and websites
+	- shapes e.g svg flowers
+	- tshirt prints
+	- cloth pairing*
+
+5. Colour collections
+	- material palette
+	- web safe colours
+	- create and store palettes
+	- modern colours
+	- random colours
+
+6. Theme app
+	- dark theme
+	- light theme
+	- colourful theme

@@ -1,0 +1,10 @@
+<div class="color-palette">
+	<div ng-if="$ctrl.palette.name.length">
+		<h3>{{$ctrl.palette.name}} palette:</h3>
+	</div>
+	<div ng-if="!$ctrl.palette.length">
+		<p>No colours in this palette.</p>
+	</div>
+
+	<color-box color="color" ng-repeat="color in $ctrl.palette.colors track by $index"></color-box>
+</div>
