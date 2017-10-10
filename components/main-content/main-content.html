@@ -3,20 +3,6 @@
         
     }
 
-    #mainContent #shell{
-        padding: 6px 0;
-    }
-
-    #mainContent #shell button{
-        align-self: flex-start;
-        padding: 0;
-        margin-left: 8px;
-        margin-right: 20px;
-        font-size: 20px;
-        background-color: transparent;
-        border: none;
-    }
-
     #mainContent #header{
     }
 
@@ -35,36 +21,10 @@
     #mainContent #tabs h2{
         font-size: 1.1em;
     }
-
-	.color-palette{
-        margin-bottom: 20px;
-    }
-
-    .color-palette color-box{
-		display: inline-block;
-		margin: 4px 0;
-		margin-right: 8px;
-	}
-
-    .color-palette h3{
-        font-size: 1.4em;
-        margin-bottom: 4px;
-    }
 </style>
-
-<tiny-color color="$ctrl.color" palettes="$ctrl.color_palettes"></tiny-color>
 
 <main id="mainContent">
     <div id="header">
-        <div id="shell" class="layout end-justified center">
-            <button>
-                <i class="fa fa-minus"></i>
-            </button>
-
-            <button>
-                <i class="fa fa-close"></i>
-            </button>
-        </div>
         <div id="tabs" class="layout center-center">
             <h2>PALETTES</h2>
         </div>
@@ -72,7 +32,10 @@
 
     <div id="content">
         <section>
-            <color-palette palette="palette" ng-repeat="palette in $ctrl.color_palettes track by $index"></color-palette>
+            <color-palette 
+                palette="palette" 
+                ng-repeat="palette in $ctrl.palettes track by $index"
+                on-color-clicked="$ctrl.onColorClicked({color: color})"></color-palette>
         </section>
     </div>
 </main>

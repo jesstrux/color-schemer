@@ -26,7 +26,8 @@ footer, header, hgroup, menu, nav, section, main {
 
 body {
     line-height: 1;
-    font-family:'Roboto', "Verdana", sans-serif;
+    /*font-family:'Roboto', "Verdana", sans-serif;*/
+    font-family: "Roboto Light", sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     letter-spacing: -0.03em;

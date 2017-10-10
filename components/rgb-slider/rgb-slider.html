@@ -1,0 +1,32 @@
+<style>
+	input[type="range"]{
+		/*transition: all 0.35s ease-out;*/
+	}
+
+	input[type="range"] + span{
+		padding: 8px 0;
+		margin-left: 8px;
+		min-width: 40px;
+		text-align: right;
+	}
+</style>
+
+<div>
+	<div class="layout center justified">
+		R&nbsp;:&nbsp;&nbsp; 
+		<input class="flex" type="range" min="0" max="255" ng-model="$ctrl.rgb.r" ng-mouseup="$ctrl.handleChange($event)">
+		<span>{{$ctrl.rgb.r}}</span>
+	</div>
+
+	<div class="layout center justified">
+		G&nbsp;:&nbsp;&nbsp; 
+		<input class="flex" type="range" min="0" max="255" ng-model="$ctrl.rgb.g" ng-mouseup="$ctrl.handleChange($event)">
+		<span>{{$ctrl.rgb.g}}</span>
+	</div>
+
+	<div class="layout center justified">
+		B&nbsp;:&nbsp;&nbsp; 
+		<input class="flex" type="range" min="0" max="255" ng-model="$ctrl.rgb.b" ng-mouseup="$ctrl.handleChange($event)">
+		<span>{{$ctrl.rgb.b}}</span>
+	</div>
+</div>

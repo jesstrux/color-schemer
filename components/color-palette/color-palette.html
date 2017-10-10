@@ -1,10 +1,30 @@
+<style>
+	.color-palette{
+        margin-bottom: 20px;
+    }
+
+    .color-palette color-box{
+		display: inline-block;
+		margin: 4px 0;
+		margin-right: 8px;
+	}
+
+    .color-palette h3{
+    	font-family: "Roboto Light", sans-serif;
+        font-size: 1.4em;
+        margin-bottom: 4px;
+    }
+</style>
 <div class="color-palette">
 	<div ng-if="$ctrl.palette.name.length">
-		<h3>{{$ctrl.palette.name}} palette:</h3>
+		<h3>{{$ctrl.palette.name}}</h3>
 	</div>
-	<div ng-if="!$ctrl.palette.length">
+	<div ng-if="!$ctrl.palette.colors.length">
 		<p>No colours in this palette.</p>
 	</div>
 
-	<color-box color="color" ng-repeat="color in $ctrl.palette.colors track by $index"></color-box>
+	<color-box 
+		color="color"
+		on-color-clicked="$ctrl.onColorClicked({color: color})"
+		ng-repeat="color in $ctrl.palette.colors track by $index"></color-box>
 </div>

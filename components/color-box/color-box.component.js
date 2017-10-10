@@ -6,10 +6,11 @@
     .module('rangi')
     .component('colorBox', {
       bindings: {
-        color: '<'
+        color: '<',
+        showText: '@',
+        onColorClicked: '&'
       },
-      // templateUrl: "components/color-box/color-box.html",
-      template: '<div style="min-height: 40px; min-width: 40px; height: inherit; background-color: {{$ctrl.color}}"></div>',
+      template: '<div ng-click-cop="{{$ctrl.color}}" ng-click="$ctrl.copyColor($ctrl.color)" class="layout center-center" style="transition: all 0.35s ease-out; text-align: center; font-size: 12px; min-height: 50px; min-width: 50px; height: inherit; background-color: {{$ctrl.color}}"><div ng-if="$ctrl.showText">{{$ctrl.color}}</div></div>',
       controller: ColorBox
     });
 
@@ -18,10 +19,10 @@
 
     ColorBox.prototype = {
       $onInit: function() {
-        // this.loadUtils();
+        
       },
-      loadUtils: function() {
-        var self = this;
+      copyColor: function(color) {
+        this.onColorClicked({color: color});
       }
     }
 })();

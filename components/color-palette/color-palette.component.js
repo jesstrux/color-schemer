@@ -7,7 +7,8 @@
     .component('colorPalette', {
       bindings: {
         palette: '<',
-        name: '@'
+        name: '@',
+        onColorClicked: '&'
       },
       templateUrl: "components/color-palette/color-palette.html",
       controller: ColorPalette

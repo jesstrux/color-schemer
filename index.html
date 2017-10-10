@@ -10,11 +10,89 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/flex.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
+
+    <style>
+        #appBar{
+            -webkit-app-region:drag;
+        }
+
+        #titleHeader{
+            position: relative;
+            padding: 8px 20px;
+            font-size: 1.3em;
+            width: 280px;
+            background: var(--app-bg);
+        }
+
+        #titleHeader h1{
+            font-family: "Lilly", cursive;
+            color: #888;
+            font-size: 1.05em;
+        }
+
+        #titleHeader hr{
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 100%;
+            height: 1px;
+            border: none;
+            background: #dfdfdf;
+        }
+
+        #shell{
+        }
+
+        #shell button{
+            align-self: flex-start;
+            padding: 0;
+            margin-left: 8px;
+            margin-right: 20px;
+            font-size: 20px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+        }
+    </style>
 </head>
 <body ng-controller="MainCtrl">
+    <div id="appBar" class="layout center">
+        <div id="titleHeader" class="layout center justified">
+            <h1 class="flex">Rangi</h1>
+            <i class="fa fa-cog"></i>
+            <hr>
+        </div>
+
+        <div id="shell" class="flex layout end-justified center">
+            <button ng-click="minimizeApp()">
+                <i class="fa fa-minus"></i>
+            </button>
+
+            <button ng-click="closeApp()">
+                <i class="fa fa-close"></i>
+            </button>
+        </div>
+    </div>
     <div class="layout">
-        <side-bar color="cur_color" on-color-change="setColor($event.color)"></side-bar>
-        <main-content class="flex" color="cur_color"></main-content>
+        <tiny-color 
+            color="cur_color"
+            palettes="palettes"
+            rgb="rgb"
+            on-color-change="setColor(color)"></tiny-color>
+
+        <side-bar 
+            color="cur_color" 
+            rgb="rgb"
+            on-manipulate-color="manipulateColor(how)"
+            on-color-change="setColor(color)"></side-bar>
+
+        <main-content class="flex" 
+            color="cur_color"
+            palettes="palettes"
+            on-color-clicked="setColor(color)"
+            ></main-content>
     </div>
 
     <script src="node_modules/angular/angular.min.js"></script>
@@ -35,16 +113,30 @@
     <script src="components/color-palette/color-palette.component.js"></script>
     <script src="components/side-bar/side-bar.component.js"></script>
     <script src="components/main-content/main-content.component.js"></script>
+    <script src="components/rgb-slider/rgb-slider.component.js"></script>
 
     <script>
+        //TODOS
+        // Suitable text colour over bg color
+        const {app} = require('electron').remote;
+
         angular
         .module('rangi')
-        .controller('MainCtrl', function($scope){
-            $scope.cur_color = "#fe4";
-
+        .controller('MainCtrl', function($scope, $rootScope){
             $scope.setColor = function(color){
-                console.log(color);
-                // $scope.cur_color = color;
+                $scope.cur_color = color;
+            }
+
+            $scope.manipulateColor = function(how){
+                $rootScope.$broadcast('manipulateColor',{how:how});
+            }
+
+            $scope.closeApp = function(){
+                app.quit();
+            }
+
+            $scope.minimizeApp = function(){
+                require('electron').remote.getCurrentWindow().minimize();
             }
         });
     </script>

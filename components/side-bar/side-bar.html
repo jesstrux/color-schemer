@@ -7,31 +7,6 @@
 	    color: #333;
 	}
 
-	#titleHeader{
-	    height: 50px;
-	    position: relative;
-	    padding: 0 20px;
-	    font-size: 1.3em;
-	}
-
-	#titleHeader h1{
-	    font-family: "Lilly", cursive;
-	    color: #888;
-	    font-size: 1.35em;
-	}
-
-	#titleHeader hr{
-	    position: absolute;
-	    left: 0;
-	    right: 0;
-	    bottom: 0;
-	    margin: auto;
-	    width: 100%;
-	    height: 1px;
-	    border: none;
-	    background: #dfdfdf;
-	}
-
 	#sideBarContent{
 		padding: 20px;
 	    height:calc(100vh - 50px);
@@ -39,25 +14,61 @@
 	    overflow-y: auto;
 	}
 
-	#curColorBox{
+	#sideBarContent #userColor{
+		width: 100%;
+		font-size: 16px;
+		padding: 4px;
+		outline: none;
+	}
+
+	#sideBarContent #curColorBox{
 		display: inline-block;
 		margin-top: 8px;
 		width: 100%;
 	}
+
+	#sideBarContent .button-bar{
+		padding: 8px 0;
+	}
+
+	#sideBarContent .button-bar button{
+		flex: 1;
+		padding: 4px 0;
+		max-width: 50%;
+	}
+
+	input:not([type="range"]){
+		display: block;
+	}
 </style>
 
-<!-- <tiny-color color="$ctrl.color" tinycolor="$ctrl.tinycolor"></tiny-color> -->
-
 <aside id="sideBar">
-    <div id="titleHeader" class="layout center justified">
-        <h1 class="flex">Rangi</h1>
-        <i class="fa fa-cog"></i>
-        <hr>
-    </div>
     <div id="sideBarContent">
-    	COLOR: {{$ctrl.color}}
-	   	<color-box id="curColorBox" color="$ctrl.color"></color-box>
+	   	<color-box id="curColorBox" color="$ctrl.colorBg"></color-box>
 	   	<br><br>
-	   	<button ng-click="$ctrl.darken()">DARKEN</button>
+
+	   	<input id="userColor" type="text" ng-keyup="$ctrl.handleKey($event)" ng-model="$ctrl.inputColor">
+
+	   	<br>
+
+	   	<rgb-slider 
+	   		rgb="$ctrl.rgb"
+	   		on-rgb-change="$ctrl.setRgb(rgb)"></rgb-slider>
+
+	   	<br>
+
+	   	<div class="button-bar layout justified">
+	   		<button ng-click="$ctrl.onManipulateColor({how: 'darken'})">DARKEN</button>
+	   		<button ng-click="$ctrl.onManipulateColor({how: 'lighten'})">LIGHTEN</button>
+	   	</div>
+	   	<div class="button-bar layout justified">
+	   		<button ng-click="$ctrl.onManipulateColor({how: 'saturate'})">SATURATE</button>
+	   		<button ng-click="$ctrl.onManipulateColor({how: 'desaturate'})">DESATURATE</button>
+	   	</div>
+
+	   	<div class="button-bar layout justified">
+	   		<button ng-click="$ctrl.onManipulateColor({how: 'spin'})">SPIN</button>
+	   		<button ng-click="$ctrl.onManipulateColor({how: 'greyscale'})">GREYSCALE</button>
+	   	</div>
     </div>
 </aside>

@@ -6,7 +6,8 @@
     .module('rangi')
     .component('mainContent', {
       bindings: {
-        color: '='
+        palettes: '<',
+        onColorClicked: '&'
       },
       templateUrl: "components/main-content/main-content.html",
       controller: MainContent
@@ -19,8 +20,8 @@
       $onInit: function() {
         // this.loadUtils();
       },
-      loadUtils: function() {
-        var self = this;
+      $onChanges: function(changes) {
+        
       }
     }
 })();
