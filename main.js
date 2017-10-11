@@ -18,11 +18,12 @@ module.exports.mainWindow = mainWindow;
 app.on('ready', function(){
     mainWindow = new BrowserWindow({
         icon: path.join(__dirname, 'icon.png'),
-        backgroundColor: '#2e2c29', 
-        minHeight: 580, minWidth: 900, 
-        maxHeight: 580, maxWidth: 900, 
+        backgroundColor: '#F0F0F0', 
+        minHeight: 580, minWidth: 900,
+        // maxHeight: 580, maxWidth: 900, 
         frame: false, 
-        show: false
+        show: false,
+        // fullscreen: true
     });
 
     mainWindow.loadURL(url.format({

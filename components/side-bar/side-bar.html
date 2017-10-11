@@ -37,6 +37,14 @@
 		max-width: 50%;
 	}
 
+	#sideBarContent .button-bar button:nth-child(even){
+		margin-left: 2px;
+	}
+
+	#sideBarContent .button-bar button:nth-child(odd){
+		margin-right: 2px;
+	}
+
 	input:not([type="range"]){
 		display: block;
 	}
@@ -44,7 +52,7 @@
 
 <aside id="sideBar">
     <div id="sideBarContent">
-	   	<color-box id="curColorBox" color="$ctrl.colorBg"></color-box>
+	   	<color-box id="curColorBox" color="$ctrl.colorBg" style="height: 120px"></color-box>
 	   	<br><br>
 
 	   	<input id="userColor" type="text" ng-keyup="$ctrl.handleKey($event)" ng-model="$ctrl.inputColor">

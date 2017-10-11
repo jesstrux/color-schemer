@@ -66,6 +66,10 @@
         </div>
 
         <div id="shell" class="flex layout end-justified center">
+            <button ng-click="captureDesktop()">
+                <i class="fa fa-hand"></i>
+            </button>
+
             <button ng-click="minimizeApp()">
                 <i class="fa fa-minus"></i>
             </button>
@@ -95,11 +99,16 @@
             ></main-content>
     </div>
 
+    <!-- <video ng-click="captureDesktop()" src="" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000"></video> -->
+
     <script src="node_modules/angular/angular.min.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
     
     <script src="node_modules/localforage/dist/localforage.min.js"></script>
     <script src="node_modules/angular-localforage/dist/angular-localForage.min.js"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquerynicescroll.js"></script>
 
     <script src="node_modules/angular-nicescroll/angular-nicescroll.js"></script>
 
@@ -118,7 +127,24 @@
     <script>
         //TODOS
         // Suitable text colour over bg color
+        // colors from image
+        // theme app from color palettes
+        // sharable palettes
+        // dragging and dropping colors
+        // right click color to show different formats
+        // show color palettes on colorwheel like kuler
+        // select only a part of a picture
+        // number of colours to get from picture
+        // resizable screenshot
+        // create gradients and use as wallpapers
+        // material colors
+        // integrate random(vibrant) colors
+        // vibrant js
+        // replace color click with popup window
+        // drag and drop to favorites
+        
         const {app} = require('electron').remote;
+        const {desktopCapturer, electronScreen, shell} = require('electron');
 
         angular
         .module('rangi')
@@ -137,6 +163,17 @@
 
             $scope.minimizeApp = function(){
                 require('electron').remote.getCurrentWindow().minimize();
+            }
+
+            $scope.captureDesktop = function(){
+                console.log(electronScreen, shell);
+
+                desktopCapturer.getSources({types: ['screen']}, (error, sources) => {
+                    if (error) throw error;
+
+                    console.log("Streaming triggered!");
+                    console.log(sources[0]);
+                });
             }
         });
     </script>
